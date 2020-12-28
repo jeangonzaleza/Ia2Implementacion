@@ -3,30 +3,31 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <algorithm>
 using namespace std;
 
 class Boat{
     public:
     int id;
-    bool guest;
     bool host;
     int crew_size;
     int total_capacity;
     int capacity;
 
-    Boat(int i, bool g, bool h, int cs, int tc){
+    Boat(int i, bool h, int cs, int tc){
         id = i;
-        guest = g;
         host = h;
         crew_size = cs;
         total_capacity = tc;
         capacity = tc - cs;
     }
 
-    //void update_capacity();
-    //void update_host();
-    //void update_guest();
+    void reset_capacity();
 };
+
+void Boat::reset_capacity(){
+    capacity = total_capacity - crew_size;
+}
 
 void HC(){
     return;
@@ -56,10 +57,25 @@ vector<Boat> init_boats(int Y, vector<string> specs){
         spec = split(specs.at(i), ",");
         crew_size = stoi(spec.at(1));
         total_cap = stoi(spec.at(0));
-        Boat new_boat(i, false, false, crew_size, total_cap);
+        Boat new_boat(i, false, crew_size, total_cap);
         boats.push_back(new_boat);
     }
     return boats;
+}
+
+bool sort_funct(Boat i, Boat j){
+    return i.capacity > j.capacity;
+}
+
+void asign_hosts(vector<Boat> *boats, int cant_hosts){
+    for (vector<Boat>::iterator it=boats->begin(); it!=boats->begin()+cant_hosts; ++it){
+        it->host = true;
+    }
+    return;
+}
+
+vector< vector<int>> generate_random_sol(int Y, int T, int cant_hosts, vector<Boat> *boats){
+
 }
 
 int main(){
@@ -76,14 +92,19 @@ int main(){
 
     p_instances.close();
 
-    cout << Y << endl;
+    /*cout << Y << endl;
     cout << T << endl;
-    cout << boat_spec << endl;
+    cout << boat_spec << endl;*/
 
     vector<string> specs = split(boat_spec, ";");
     vector<Boat> boats = init_boats(Y, specs);
+    sort(boats.begin(), boats.begin()+Y, sort_funct);
 
-    cout << boats.at(10).id << endl;
-    cout << boats.at(1).id << endl;
-    return 0;
+    /*asign_hosts(&boats, 4);
+
+    cout << "myvector contains:";
+    for (vector<Boat>::iterator it=boats.begin(); it!=boats.end(); ++it)
+        cout << ' ' << it->host;
+    cout << '\n';
+    return 0;*/
 }
