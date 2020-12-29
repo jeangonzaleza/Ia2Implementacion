@@ -74,8 +74,37 @@ void asign_hosts(vector<Boat> *boats, int cant_hosts){
     return;
 }
 
-vector< vector<int>> generate_random_sol(int Y, int T, int cant_hosts, vector<Boat> *boats){
+int DIFF(vector< vector<int>> matrix, int cant_host){
+    int count;
+    int total_penalty = 0;
+    for (vector< vector<int>>::iterator it=matrix.begin(); it!=matrix.end(); ++it){
+        sort(it->begin(), it->end());
+        count = distance(it->begin(), unique(it->begin(), it->end()));
+        cout << count << endl;
+        total_penalty = total_penalty + (cant_host - count);
+    }
+    cout << total_penalty << endl;
+    return total_penalty;
+}
 
+int meet(){
+    int meetings = 0;
+    return meetings;
+}
+
+int ONCE(){
+    int total_penalty = 0;
+    return total_penalty;
+}
+
+int CAPA(){
+    int total_penalty = 0;
+    return total_penalty;
+}
+
+vector< vector<int>> generate_random_sol(int Y, int T, int cant_hosts, vector<Boat> *boats){
+    vector< vector<int>> matrix;
+    return matrix;
 }
 
 int main(){
@@ -99,6 +128,10 @@ int main(){
     vector<string> specs = split(boat_spec, ";");
     vector<Boat> boats = init_boats(Y, specs);
     sort(boats.begin(), boats.begin()+Y, sort_funct);
+
+    vector< vector<int>> test_vect{{1,1,1,1}, {1,3,2,3}, {1,2,3,4}};
+
+    DIFF(test_vect, 4);
 
     /*asign_hosts(&boats, 4);
 
