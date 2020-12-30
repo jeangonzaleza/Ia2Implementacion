@@ -4,6 +4,7 @@
 #include <fstream>
 #include <vector>
 #include <algorithm>
+#include <cstdlib>
 using namespace std;
 
 class Boat{
@@ -87,18 +88,48 @@ int DIFF(vector< vector<int>> matrix, int cant_host){
     return total_penalty;
 }
 
-int meet(){
+int meet(vector< vector<int>> matrix, int g1, int g2){
     int meetings = 0;
-    return meetings;
+    unsigned int j;
+    for(j = 0; j < matrix[g1].size(); ++j){
+        if(matrix.at(g1).at(j) == matrix.at(g2).at(j))
+            meetings++;
+        cout << matrix.at(g1).at(j) << " y " << matrix.at(g2).at(j) << endl;
+    }
+    cout << "meetings: " << meetings << endl;
+    if (meetings <= 1) return 0;
+    return (meetings - 1);
 }
 
-int ONCE(){
+int ONCE(vector< vector<int>> matrix){
     int total_penalty = 0;
+    int guest = matrix.size();
+    int i, j;
+    for(i = 0; i < (guest - 1); ++i){
+        for(j = i+1; j < guest; ++j)
+            total_penalty += meet(matrix, i, j);
+    }
+    cout << "total penalty: " << total_penalty << endl;
     return total_penalty;
 }
 
-int CAPA(){
+int CAPA(vector<Boat> *boats, vector< vector<int>> matrix, int T, int cant_hosts){
     int total_penalty = 0;
+    int j, i, host, cap;
+
+    for(j = 0; j < T; ++j){
+        for (i = 0; i < matrix.size(); ++i){
+            host = matrix.at(i).at(T);
+            boats->at(host).capacity -= boats->at(i + cant_hosts).crew_size;
+        }
+        for (i = 0; i < cant_hosts; ++i){
+            cap = boats->at(i).capacity;
+            if(cap < 0)
+                total_penalty += 1 + (abs(cap)-1)/4;
+            boats->at(i).reset_capacity();
+        }
+    }
+
     return total_penalty;
 }
 
@@ -129,9 +160,11 @@ int main(){
     vector<Boat> boats = init_boats(Y, specs);
     sort(boats.begin(), boats.begin()+Y, sort_funct);
 
-    vector< vector<int>> test_vect{{1,1,1,1}, {1,3,2,3}, {1,2,3,4}};
+    vector< vector<int>> test_vect{{1,1,1,1}, {1,3,3,2}, {1,2,3,4}, {1,1,1,2}};
 
-    DIFF(test_vect, 4);
+    //DIFF(test_vect, 4);
+    //ONCE(test_vect);
+    
 
     /*asign_hosts(&boats, 4);
 
