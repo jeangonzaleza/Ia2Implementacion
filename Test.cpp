@@ -5,6 +5,7 @@
 #include <vector>
 #include <algorithm>
 #include <cstdlib>
+#include <time.h>
 using namespace std;
 
 class Boat{
@@ -81,10 +82,10 @@ int DIFF(vector< vector<int>> matrix, int cant_host){
     for (vector< vector<int>>::iterator it=matrix.begin(); it!=matrix.end(); ++it){
         sort(it->begin(), it->end());
         count = distance(it->begin(), unique(it->begin(), it->end()));
-        cout << count << endl;
+        //cout << count << endl;
         total_penalty = total_penalty + (cant_host - count);
     }
-    cout << total_penalty << endl;
+    cout << "DIFF total penalty: " << total_penalty << endl;
     return total_penalty;
 }
 
@@ -94,9 +95,9 @@ int meet(vector< vector<int>> matrix, int g1, int g2){
     for(j = 0; j < matrix[g1].size(); ++j){
         if(matrix.at(g1).at(j) == matrix.at(g2).at(j))
             meetings++;
-        cout << matrix.at(g1).at(j) << " y " << matrix.at(g2).at(j) << endl;
+        //cout << matrix.at(g1).at(j) << " y " << matrix.at(g2).at(j) << endl;
     }
-    cout << "meetings: " << meetings << endl;
+    //cout << "meetings: " << meetings << endl;
     if (meetings <= 1) return 0;
     return (meetings - 1);
 }
@@ -109,33 +110,51 @@ int ONCE(vector< vector<int>> matrix){
         for(j = i+1; j < guest; ++j)
             total_penalty += meet(matrix, i, j);
     }
-    cout << "total penalty: " << total_penalty << endl;
+    cout << "ONCE total penalty: " << total_penalty << endl;
     return total_penalty;
 }
 
 int CAPA(vector<Boat> *boats, vector< vector<int>> matrix, int T, int cant_hosts){
     int total_penalty = 0;
-    int j, i, host, cap;
+    unsigned int i; 
+    int j, k, host, cap;
 
     for(j = 0; j < T; ++j){
         for (i = 0; i < matrix.size(); ++i){
-            host = matrix.at(i).at(T);
+            host = matrix.at(i).at(j);
             boats->at(host).capacity -= boats->at(i + cant_hosts).crew_size;
         }
-        for (i = 0; i < cant_hosts; ++i){
-            cap = boats->at(i).capacity;
+        for (k = 0; k < cant_hosts; ++k){
+            cap = boats->at(k).capacity;
+            //cout << "capacity of " << k << " " << cap << endl;
             if(cap < 0)
                 total_penalty += 1 + (abs(cap)-1)/4;
-            boats->at(i).reset_capacity();
+            boats->at(k).reset_capacity();
         }
     }
-
+    cout << "CAPA total penalty: " << total_penalty << endl;
     return total_penalty;
 }
 
-vector< vector<int>> generate_random_sol(int Y, int T, int cant_hosts, vector<Boat> *boats){
+vector< vector<int>> generate_random_sol(int Y, int T, int cant_hosts){
+    int i, j, cant_guest;
+    cant_guest = Y - cant_hosts;
     vector< vector<int>> matrix;
+    srand(time(NULL));
+    for (i = 0; i < cant_guest; ++i){
+        vector<int> aux_vector;
+        for (j = 0; j < T; ++j)
+            aux_vector.push_back(rand() % cant_hosts);
+        matrix.push_back(aux_vector);
+    }
     return matrix;
+}
+
+int evaluation(int cant_hosts, int T, vector< vector<int>> *matrix, vector<Boat> *boats, int capa_penalty = 1, int diff_penalty = 1, int once_penalty = 1){
+    int capa = CAPA(boats, *matrix, T, cant_hosts);
+    int diff = DIFF(*matrix, cant_hosts);
+    int once = ONCE(*matrix);
+    return (capa + diff + once);
 }
 
 int main(){
@@ -160,7 +179,18 @@ int main(){
     vector<Boat> boats = init_boats(Y, specs);
     sort(boats.begin(), boats.begin()+Y, sort_funct);
 
-    vector< vector<int>> test_vect{{1,1,1,1}, {1,3,3,2}, {1,2,3,4}, {1,1,1,2}};
+    vector< vector<int>> test = generate_random_sol(Y, T, 4);
+    int eval = evaluation(4, T, &test, &boats);
+
+    for(vector< vector<int>>::iterator it=test.begin(); it!=test.end(); ++it){
+        for(vector<int>::iterator jt=it->begin(); jt!=it->end(); ++jt){
+            cout << *jt << " ";
+        }
+        cout << endl;
+    }
+    cout << endl << "Cost: " << eval << endl;
+
+    //vector< vector<int>> test_vect{{1,1,1,1}, {1,3,3,2}, {1,2,3,4}, {1,1,1,2}};
 
     //DIFF(test_vect, 4);
     //ONCE(test_vect);
