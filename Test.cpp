@@ -157,6 +157,28 @@ int evaluation(int cant_hosts, int T, vector< vector<int>> *matrix, vector<Boat>
     return (capa + diff + once);
 }
 
+vector< vector<int>> movement(vector< vector<int>> matrix, vector<Boat> *boats, int cant_host, int *best_sol, int T){
+    vector< vector<int>> copy_matrix = matrix;
+    int i, j, new_sol;
+    
+    unsigned int i, j, k;
+
+    for(i = 0; i < copy_matrix.size(); ++i){
+        for(j = 0; j < copy_matrix.at(0).size(); ++j){
+            for(k = 0; k < cant_host; ++k){
+                copy_matrix.at(i).at(j) = k % cant_host;
+                new_sol = evaluation(cant_host, T, &copy_matrix, boats);
+                if(new_sol < *best_sol){
+                    *best_sol = new_sol;
+                    return copy_matrix;
+                }
+                copy_matrix = matrix;
+            }
+        }
+    }
+    return matrix;
+}
+
 int main(){
     int Y;
     int T;
