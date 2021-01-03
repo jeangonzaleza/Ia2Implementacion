@@ -157,17 +157,29 @@ int evaluation(int cant_hosts, int T, vector< vector<int>> *matrix, vector<Boat>
     return (capa + diff + once);
 }
 
+void print_matrix(vector< vector<int>> matrix){
+    unsigned int i, j;
+    unsigned int rows = matrix.size();
+    unsigned int cols = matrix.at(0).size();
+    for(i = 0; i < rows; ++i){
+        for(j = 0; j < cols; ++j)
+            cout << matrix.at(i).at(j) << " ";
+        cout << endl;
+    }
+}
+
 vector< vector<int>> movement(vector< vector<int>> matrix, vector<Boat> *boats, int cant_host, int *best_sol, int T){
-    vector< vector<int>> copy_matrix = matrix;
-    int i, j, new_sol;
-    
-    unsigned int i, j, k;
+    vector< vector<int>> copy_matrix = matrix;    
+    unsigned int i, j;
+    int k, new_sol;
 
     for(i = 0; i < copy_matrix.size(); ++i){
         for(j = 0; j < copy_matrix.at(0).size(); ++j){
             for(k = 0; k < cant_host; ++k){
                 copy_matrix.at(i).at(j) = k % cant_host;
                 new_sol = evaluation(cant_host, T, &copy_matrix, boats);
+                print_matrix(copy_matrix);
+                cout << "Eval: " << new_sol << endl;
                 if(new_sol < *best_sol){
                     *best_sol = new_sol;
                     return copy_matrix;
@@ -193,36 +205,15 @@ int main(){
 
     p_instances.close();
 
-    /*cout << Y << endl;
-    cout << T << endl;
-    cout << boat_spec << endl;*/
-
     vector<string> specs = split(boat_spec, ";");
     vector<Boat> boats = init_boats(Y, specs);
     sort(boats.begin(), boats.begin()+Y, sort_funct);
 
     vector< vector<int>> test = generate_random_sol(Y, T, 4);
-    int eval = evaluation(4, T, &test, &boats);
-
-    for(vector< vector<int>>::iterator it=test.begin(); it!=test.end(); ++it){
-        for(vector<int>::iterator jt=it->begin(); jt!=it->end(); ++jt){
-            cout << *jt << " ";
-        }
-        cout << endl;
-    }
-    cout << endl << "Cost: " << eval << endl;
-
-    //vector< vector<int>> test_vect{{1,1,1,1}, {1,3,3,2}, {1,2,3,4}, {1,1,1,2}};
-
-    //DIFF(test_vect, 4);
-    //ONCE(test_vect);
-    
-
-    /*asign_hosts(&boats, 4);
-
-    cout << "myvector contains:";
-    for (vector<Boat>::iterator it=boats.begin(); it!=boats.end(); ++it)
-        cout << ' ' << it->host;
-    cout << '\n';
-    return 0;*/
+    int best_sol = evaluation(4, T, &test, &boats);
+    print_matrix(test);
+    cout << "BEST 1: " << best_sol << endl;
+    test = movement(test, &boats, 4, &best_sol, T);
+    cout << "BEST 2: " << best_sol << endl;
+    return 0;
 }
