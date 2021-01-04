@@ -7,6 +7,7 @@
 #include <cstdlib>
 #include <time.h>
 using namespace std;
+#define MAX_ITERS 100
 
 class Boat{
     public:
@@ -29,10 +30,6 @@ class Boat{
 
 void Boat::reset_capacity(){
     capacity = total_capacity - crew_size;
-}
-
-void HC(){
-    return;
 }
 
 vector<string> split(string input, string delimiter){
@@ -85,7 +82,7 @@ int DIFF(vector< vector<int>> matrix, int cant_host){
         //cout << count << endl;
         total_penalty = total_penalty + (cant_host - count);
     }
-    cout << "DIFF total penalty: " << total_penalty << endl;
+    //cout << "DIFF total penalty: " << total_penalty << endl;
     return total_penalty;
 }
 
@@ -110,7 +107,7 @@ int ONCE(vector< vector<int>> matrix){
         for(j = i+1; j < guest; ++j)
             total_penalty += meet(matrix, i, j);
     }
-    cout << "ONCE total penalty: " << total_penalty << endl;
+    //cout << "ONCE total penalty: " << total_penalty << endl;
     return total_penalty;
 }
 
@@ -132,7 +129,7 @@ int CAPA(vector<Boat> *boats, vector< vector<int>> matrix, int T, int cant_hosts
             boats->at(k).reset_capacity();
         }
     }
-    cout << "CAPA total penalty: " << total_penalty << endl;
+    //cout << "CAPA total penalty: " << total_penalty << endl;
     return total_penalty;
 }
 
@@ -178,8 +175,8 @@ vector< vector<int>> movement(vector< vector<int>> matrix, vector<Boat> *boats, 
             for(k = 0; k < cant_host; ++k){
                 copy_matrix.at(i).at(j) = k % cant_host;
                 new_sol = evaluation(cant_host, T, &copy_matrix, boats);
-                print_matrix(copy_matrix);
-                cout << "Eval: " << new_sol << endl;
+                //print_matrix(copy_matrix);
+                //cout << "Eval: " << new_sol << endl;
                 if(new_sol < *best_sol){
                     *best_sol = new_sol;
                     return copy_matrix;
@@ -189,6 +186,40 @@ vector< vector<int>> movement(vector< vector<int>> matrix, vector<Boat> *boats, 
         }
     }
     return matrix;
+}
+
+void HC(vector<Boat> *boats, int cant_hosts, int Y, int T){
+    int stop = 0;
+    int stuck, new_sol;
+    int best_sol = 10000;
+    vector< vector<int>> matrix, best_matrix;
+    while(stop < MAX_ITERS){
+        matrix = generate_random_sol(Y, T, cant_hosts);
+        new_sol = evaluation(cant_hosts, T, &matrix, boats);
+        if(stop == 0){
+            cout << "INITIAL MATRIX: "<< endl; 
+            print_matrix(matrix); 
+            cout << "EVAL: " << new_sol << endl;
+        }
+        if(new_sol < best_sol){
+            best_sol = new_sol;
+            best_matrix = matrix;
+        }
+        stuck = 0;
+        do{
+            matrix = movement(matrix, boats, cant_hosts, &new_sol, T);
+            if(new_sol < best_sol){
+                best_sol = new_sol;
+                best_matrix = matrix;
+            }
+            stuck++;
+        } while(stuck < MAX_ITERS && best_sol <= new_sol);
+        stop++;
+    }
+    cout << "FINAL MATRIX: " << endl;
+    print_matrix(matrix);
+    cout << "BEST SOL EVAL: " << best_sol << endl;
+    return;
 }
 
 int main(){
@@ -209,11 +240,13 @@ int main(){
     vector<Boat> boats = init_boats(Y, specs);
     sort(boats.begin(), boats.begin()+Y, sort_funct);
 
-    vector< vector<int>> test = generate_random_sol(Y, T, 4);
+    HC(&boats, 4, Y, T);
+
+    /*vector< vector<int>> test = generate_random_sol(Y, T, 4);
     int best_sol = evaluation(4, T, &test, &boats);
     print_matrix(test);
     cout << "BEST 1: " << best_sol << endl;
     test = movement(test, &boats, 4, &best_sol, T);
-    cout << "BEST 2: " << best_sol << endl;
+    cout << "BEST 2: " << best_sol << endl;*/
     return 0;
 }
