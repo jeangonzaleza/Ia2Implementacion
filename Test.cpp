@@ -6,8 +6,8 @@
 #include <algorithm>
 #include <cstdlib>
 #include <time.h>
+#include <iomanip>
 using namespace std;
-#define MAX_ITERS 20
 
 class Boat{
     public:
@@ -82,7 +82,7 @@ int DIFF(vector< vector<int>> matrix, int T){
         //cout << count << endl;
         total_penalty = total_penalty + (T - count);
     }
-    cout << "DIFF total penalty: " << total_penalty << endl;
+    //cout << "DIFF total penalty: " << total_penalty << endl;
     return total_penalty;
 }
 
@@ -107,7 +107,7 @@ int ONCE(vector< vector<int>> matrix){
         for(j = i+1; j < guest; ++j)
             total_penalty += meet(matrix, i, j);
     }
-    cout << "ONCE total penalty: " << total_penalty << endl;
+    //cout << "ONCE total penalty: " << total_penalty << endl;
     return total_penalty;
 }
 
@@ -129,7 +129,7 @@ int CAPA(vector<Boat> *boats, vector< vector<int>> matrix, int T, int cant_hosts
             boats->at(k).reset_capacity();
         }
     }
-    cout << "CAPA total penalty: " << total_penalty << endl;
+    //cout << "CAPA total penalty: " << total_penalty << endl;
     return total_penalty;
 }
 
@@ -154,14 +154,14 @@ int evaluation(int cant_hosts, int T, vector< vector<int>> *matrix, vector<Boat>
     return (capa + diff + once);
 }
 
-void print_matrix(vector< vector<int>> matrix){
+void print_matrix(vector< vector<int>> matrix, ofstream &File){
     unsigned int i, j;
     unsigned int rows = matrix.size();
     unsigned int cols = matrix.at(0).size();
     for(i = 0; i < rows; ++i){
         for(j = 0; j < cols; ++j)
-            cout << matrix.at(i).at(j) << " ";
-        cout << endl;
+            File << matrix.at(i).at(j) << " ";
+        File << endl;
     }
 }
 
@@ -188,21 +188,25 @@ vector< vector<int>> movement(vector< vector<int>> matrix, vector<Boat> *boats, 
     return matrix;
 }
 
-void HC(vector<Boat> *boats, int cant_hosts, int Y, int T){
+void HC(ofstream &File, vector<Boat> *boats, int cant_hosts, int Y, int T, int MAX_ITERS=100, int MAX_RESETS=100){
+    time_t start, end;
+    time(&start);
     int stop = 0;
     int stuck, new_sol;
     int best_sol = 10000;
     vector< vector<int>> matrix, best_matrix;
-    while(stop < MAX_ITERS){
+    File << "cant_hosts=" << cant_hosts << ";max_iters=" << MAX_ITERS << ";max_resets="<< MAX_RESETS << endl; 
+    while(stop < MAX_RESETS){
         matrix = generate_random_sol(Y, T, cant_hosts);
         new_sol = evaluation(cant_hosts, T, &matrix, boats);
         if(stop == 0){
-            cout << "INITIAL MATRIX: "<< endl; 
-            print_matrix(matrix); 
-            cout << "EVAL: " << new_sol << endl;
+            File << "INITIAL MATRIX: "<< endl; 
+            print_matrix(matrix, File); 
+            File << "EVAL: " << new_sol << endl;
         }
         if(new_sol < best_sol){
             best_sol = new_sol;
+            File << best_sol << endl;
             best_matrix = matrix;
         }
         stuck = 0;
@@ -210,37 +214,75 @@ void HC(vector<Boat> *boats, int cant_hosts, int Y, int T){
             matrix = movement(matrix, boats, cant_hosts, &new_sol, T);
             if(new_sol < best_sol){
                 best_sol = new_sol;
+                File << best_sol << endl;
                 best_matrix = matrix;
             }
             stuck++;
         } while(stuck < MAX_ITERS && best_sol <= new_sol);
         stop++;
     }
-    cout << "FINAL MATRIX: " << endl;
-    print_matrix(matrix);
-    cout << "BEST SOL EVAL: " << best_sol << endl;
+    File << "FINAL MATRIX: " << endl;
+    print_matrix(best_matrix, File);
+    File << "BEST SOL EVAL: " << best_sol << endl;
+    time(&end);
+
+    double time_taken = double(end - start);
+    File << "Time: " << fixed 
+         << time_taken << setprecision(5); 
+    File << " sec" << endl; 
+
     return;
 }
 
 int main(){
-    int Y;
-    int T;
+    int Y, T, i, hosts;
     string boat_spec;
-    ifstream p_instances("Ian07.txt");
+    ifstream p_instances;
+    string out_path;
 
-    getline(p_instances, boat_spec);
-    Y = stoi(boat_spec);
-    getline(p_instances, boat_spec);
-    T = stoi(boat_spec);
-    getline(p_instances, boat_spec);
+    for(i = 1; i < 11; ++i){
+        if(i != 10){
+            ifstream p_instances("./Instancias PPP/Instancias CSPLib/Ian0" + to_string(i) + ".txt");
+            getline(p_instances, boat_spec);
+            Y = stoi(boat_spec);
+            getline(p_instances, boat_spec);
+            T = stoi(boat_spec);
+            getline(p_instances, boat_spec);
+            p_instances.close();
+            out_path = "./OutputPPP/out_Ian0" + to_string(i) + ".txt";
+        }
+        else{
+            ifstream p_instances("./Instancias PPP/Instancias CSPLib/Ian10.txt");
+            getline(p_instances, boat_spec);
+            Y = stoi(boat_spec);
+            getline(p_instances, boat_spec);
+            T = stoi(boat_spec);
+            getline(p_instances, boat_spec);
+            p_instances.close();
+            out_path = "./OutputPPP/out_Ian10.txt";
+        }
+        ofstream File(out_path);
 
-    p_instances.close();
+        vector<string> specs = split(boat_spec, ";");
+        vector<Boat> boats = init_boats(Y, specs);
+        sort(boats.begin(), boats.begin()+Y, sort_funct);
+        //HC(File, &boats, 4, Y, T, 25, 25);
+        for(hosts = 1; hosts <= T; ++hosts){
+            HC(File, &boats, hosts, Y, T, 25, 25);
+            HC(File, &boats, hosts, Y, T, 50, 25);
+            HC(File, &boats, hosts, Y, T, 25, 50);
+            HC(File, &boats, hosts, Y, T, 50, 50);
 
-    vector<string> specs = split(boat_spec, ";");
-    vector<Boat> boats = init_boats(Y, specs);
-    sort(boats.begin(), boats.begin()+Y, sort_funct);
+            HC(File, &boats, hosts, Y, T, 25, 100);
+            HC(File, &boats, hosts, Y, T, 100, 25);
+            HC(File, &boats, hosts, Y, T, 100, 50);
+            HC(File, &boats, hosts, Y, T, 50, 100);
 
-    //HC(&boats, 4, Y, T);
+            HC(File, &boats, hosts, Y, T, 100, 100);
+        }
+        File.close();
+    }
+
     /*vector< vector<int>> test = {{1,2,3,2,0}, 
                                  {3,1,3,0,2}, 
                                  {2,1,0,3,3}, 
@@ -256,7 +298,7 @@ int main(){
                                  {1,0,2,0,3},
                                  {0,1,2,3,1},
                                  {2,1,3,2,2}};*/
-    vector< vector<int>> test = {{0,2,2,3,1}, 
+    /*vector< vector<int>> test = {{0,2,2,3,1}, 
                                  {0,1,0,2,3}, 
                                  {3,0,1,2,1}, 
                                  {3,2,0,1,0}, 
@@ -265,7 +307,7 @@ int main(){
                                  {2,1,3,0,1}};
     int best_sol = evaluation(4, T, &test, &boats);
     print_matrix(test);
-    cout << "EVAL: " << best_sol << endl;
+    cout << "EVAL: " << best_sol << endl;*/
     //test = movement(test, &boats, 4, &best_sol, T);
     //cout << "BEST 2: " << best_sol << endl;
     return 0;

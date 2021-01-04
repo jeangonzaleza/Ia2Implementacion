@@ -1,0 +1,1520 @@
+cant_hosts=1;max_iters=25;max_resets=25
+INITIAL MATRIX: 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+EVAL: 240
+240
+FINAL MATRIX: 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+BEST SOL EVAL: 240
+Time: 3.000000 sec
+cant_hosts=1;max_iters=50;max_resets=25
+INITIAL MATRIX: 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+EVAL: 240
+240
+FINAL MATRIX: 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+BEST SOL EVAL: 240
+Time: 7.00000 sec
+cant_hosts=1;max_iters=25;max_resets=50
+INITIAL MATRIX: 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+EVAL: 240
+240
+FINAL MATRIX: 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+BEST SOL EVAL: 240
+Time: 6.00000 sec
+cant_hosts=1;max_iters=50;max_resets=50
+INITIAL MATRIX: 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+EVAL: 240
+240
+FINAL MATRIX: 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+BEST SOL EVAL: 240
+Time: 12.00000 sec
+cant_hosts=1;max_iters=25;max_resets=100
+INITIAL MATRIX: 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+EVAL: 240
+240
+FINAL MATRIX: 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+BEST SOL EVAL: 240
+Time: 13.00000 sec
+cant_hosts=1;max_iters=100;max_resets=25
+INITIAL MATRIX: 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+EVAL: 240
+240
+FINAL MATRIX: 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+BEST SOL EVAL: 240
+Time: 12.00000 sec
+cant_hosts=1;max_iters=100;max_resets=50
+INITIAL MATRIX: 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+EVAL: 240
+240
+FINAL MATRIX: 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+BEST SOL EVAL: 240
+Time: 25.00000 sec
+cant_hosts=1;max_iters=50;max_resets=100
+INITIAL MATRIX: 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+EVAL: 240
+240
+FINAL MATRIX: 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+BEST SOL EVAL: 240
+Time: 25.00000 sec
+cant_hosts=1;max_iters=100;max_resets=100
+INITIAL MATRIX: 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+EVAL: 240
+240
+FINAL MATRIX: 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+0 0 0 0 0 
+BEST SOL EVAL: 240
+Time: 50.00000 sec
+cant_hosts=2;max_iters=25;max_resets=25
+INITIAL MATRIX: 
+0 1 0 0 1 
+0 1 0 0 1 
+0 1 1 0 0 
+1 1 0 1 1 
+0 0 1 1 1 
+0 1 0 0 1 
+1 0 0 1 1 
+1 1 0 1 1 
+1 0 1 1 0 
+EVAL: 94
+94
+91
+88
+86
+85
+84
+83
+82
+81
+80
+78
+77
+76
+FINAL MATRIX: 
+1 1 1 0 0 
+0 0 0 1 0 
+0 1 1 0 1 
+1 1 0 1 1 
+0 0 1 0 1 
+0 1 0 0 0 
+1 0 0 1 1 
+0 1 0 1 1 
+1 0 1 1 0 
+BEST SOL EVAL: 76
+Time: 3.00000 sec
+cant_hosts=2;max_iters=50;max_resets=25
+INITIAL MATRIX: 
+0 0 0 1 0 
+1 0 1 0 1 
+1 0 1 0 1 
+0 1 1 1 0 
+1 1 0 0 0 
+1 0 1 1 1 
+1 0 0 0 1 
+0 1 0 0 1 
+1 1 0 0 0 
+EVAL: 83
+83
+81
+79
+77
+76
+FINAL MATRIX: 
+0 0 0 1 0 
+0 0 1 0 1 
+1 0 1 1 1 
+0 1 1 1 0 
+1 1 0 0 0 
+1 0 1 1 1 
+0 0 0 1 1 
+0 1 0 0 1 
+1 1 0 0 0 
+BEST SOL EVAL: 76
+Time: 8.00000 sec
+cant_hosts=2;max_iters=25;max_resets=50
+INITIAL MATRIX: 
+1 0 0 0 1 
+1 0 1 0 0 
+1 1 1 0 0 
+0 0 0 0 1 
+1 1 0 0 1 
+0 0 1 1 1 
+0 0 0 0 0 
+1 1 1 0 0 
+1 1 1 1 1 
+EVAL: 91
+91
+88
+85
+82
+79
+78
+77
+76
+FINAL MATRIX: 
+1 0 0 1 1 
+1 0 0 0 0 
+1 0 0 0 0 
+0 1 1 1 0 
+1 0 1 0 1 
+1 1 0 0 1 
+0 1 1 1 0 
+0 1 0 1 1 
+0 0 1 0 1 
+BEST SOL EVAL: 76
+Time: 7.00000 sec
+cant_hosts=2;max_iters=50;max_resets=50
+INITIAL MATRIX: 
+1 0 1 0 1 
+0 0 1 1 0 
+0 1 1 1 0 
+1 1 0 1 0 
+0 0 1 1 0 
+1 0 0 1 0 
+0 0 0 0 0 
+1 0 0 0 1 
+0 0 0 1 0 
+EVAL: 97
+97
+93
+92
+91
+88
+84
+83
+82
+81
+80
+79
+78
+77
+76
+FINAL MATRIX: 
+1 1 0 1 0 
+1 0 0 1 0 
+0 0 1 0 0 
+1 1 0 0 1 
+1 1 1 0 0 
+0 0 0 0 1 
+0 0 0 0 1 
+1 0 1 1 0 
+0 1 1 1 1 
+BEST SOL EVAL: 76
+Time: 15.00000 sec
+cant_hosts=2;max_iters=25;max_resets=100
+INITIAL MATRIX: 
+0 1 1 1 1 
+0 1 0 1 1 
+0 1 0 0 0 
+1 1 0 1 1 
+1 0 0 1 1 
+1 0 0 0 1 
+0 0 0 1 1 
+0 1 1 0 1 
+0 0 0 1 0 
+EVAL: 98
+98
+96
+95
+91
+88
+87
+83
+82
+81
+80
+79
+77
+76
+FINAL MATRIX: 
+1 0 1 0 0 
+1 1 1 1 0 
+0 1 1 0 0 
+1 1 0 1 1 
+1 0 1 1 0 
+1 0 0 0 1 
+0 0 0 1 1 
+0 1 1 0 1 
+0 0 0 1 0 
+BEST SOL EVAL: 76
+Time: 13.00000 sec
+cant_hosts=2;max_iters=100;max_resets=25
+INITIAL MATRIX: 
+0 1 0 1 1 
+1 0 0 1 1 
+1 1 1 1 1 
+1 1 1 1 0 
+0 1 1 1 1 
+1 1 0 0 0 
+0 0 1 0 1 
+0 1 0 1 1 
+1 0 0 0 1 
+EVAL: 92
+92
+89
+88
+86
+82
+80
+79
+78
+77
+76
+FINAL MATRIX: 
+0 0 1 0 0 
+1 0 0 1 0 
+0 1 1 1 1 
+1 1 1 1 0 
+0 1 1 1 1 
+1 1 0 0 0 
+1 0 1 0 0 
+0 1 0 0 1 
+1 0 0 0 1 
+BEST SOL EVAL: 76
+Time: 16.00000 sec
+cant_hosts=2;max_iters=100;max_resets=50
+INITIAL MATRIX: 
+0 0 1 0 0 
+1 1 1 0 0 
+1 1 0 1 0 
+0 0 1 0 0 
+0 1 0 0 1 
+1 1 0 0 0 
+0 1 0 0 1 
+0 1 1 0 1 
+1 1 0 0 0 
+EVAL: 102
+102
+101
+96
+95
+90
+87
+82
+81
+80
+78
+77
+76
+FINAL MATRIX: 
+0 0 1 1 0 
+1 0 1 1 1 
+1 0 0 1 1 
+0 0 1 1 0 
+1 1 1 0 1 
+1 1 0 0 0 
+0 1 0 0 1 
+0 1 1 0 1 
+1 1 0 0 0 
+BEST SOL EVAL: 76
+Time: 32.00000 sec
+cant_hosts=2;max_iters=50;max_resets=100
+INITIAL MATRIX: 
+0 1 0 0 0 
+1 0 1 1 0 
+1 1 1 0 0 
+0 0 0 1 1 
+1 0 0 1 1 
+1 0 1 0 0 
+0 0 0 0 0 
+0 0 0 0 1 
+0 1 0 0 1 
+EVAL: 87
+87
+86
+85
+84
+82
+81
+79
+78
+77
+76
+FINAL MATRIX: 
+1 1 0 1 0 
+0 1 1 1 0 
+1 0 1 0 1 
+0 0 1 1 1 
+1 1 0 1 1 
+1 0 1 0 0 
+0 0 0 1 0 
+0 0 0 0 1 
+0 1 0 0 1 
+BEST SOL EVAL: 76
+Time: 31.00000 sec
+cant_hosts=2;max_iters=100;max_resets=100
+INITIAL MATRIX: 
+1 0 0 1 1 
+0 1 1 1 1 
+0 1 0 0 0 
+0 1 0 0 1 
+0 0 1 1 1 
+1 1 1 0 0 
+0 1 0 1 0 
+0 1 0 1 1 
+1 1 0 1 1 
+EVAL: 95
+95
+93
+92
+89
+87
+82
+80
+79
+78
+77
+76
+FINAL MATRIX: 
+1 0 0 0 1 
+0 0 0 1 0 
+1 0 1 0 0 
+1 1 0 1 1 
+1 0 1 0 0 
+1 0 0 1 0 
+0 1 1 1 1 
+0 1 0 0 0 
+0 1 1 1 1 
+BEST SOL EVAL: 76
+Time: 65.00000 sec
+cant_hosts=3;max_iters=25;max_resets=25
+INITIAL MATRIX: 
+0 2 0 0 1 
+2 2 2 0 2 
+0 1 1 0 0 
+0 1 0 0 0 
+0 2 2 1 1 
+2 2 1 0 1 
+1 0 0 2 1 
+0 1 2 0 0 
+EVAL: 49
+49
+45
+43
+41
+40
+39
+38
+37
+36
+35
+34
+33
+31
+30
+29
+28
+26
+25
+24
+23
+FINAL MATRIX: 
+0 0 1 1 2 
+1 2 0 2 2 
+1 0 2 0 0 
+2 1 0 1 0 
+0 2 2 1 1 
+2 2 1 0 1 
+1 0 0 2 1 
+0 1 1 2 0 
+BEST SOL EVAL: 23
+Time: 2.00000 sec
+cant_hosts=3;max_iters=50;max_resets=25
+INITIAL MATRIX: 
+0 2 0 0 2 
+0 0 2 0 0 
+0 0 2 0 2 
+2 1 2 0 0 
+0 1 1 2 1 
+1 1 2 1 2 
+1 2 2 0 0 
+1 0 0 1 0 
+EVAL: 48
+48
+47
+46
+45
+43
+42
+41
+39
+38
+34
+33
+31
+30
+29
+28
+27
+25
+24
+FINAL MATRIX: 
+2 0 1 1 0 
+1 2 0 1 2 
+1 0 2 0 0 
+0 0 0 2 1 
+2 1 0 0 0 
+0 1 2 1 1 
+1 1 1 2 2 
+2 2 1 0 1 
+BEST SOL EVAL: 24
+Time: 7.00000 sec
+cant_hosts=3;max_iters=25;max_resets=50
+INITIAL MATRIX: 
+2 2 1 1 1 
+1 1 2 1 0 
+2 0 0 0 0 
+0 1 2 1 1 
+2 0 2 0 2 
+1 0 2 1 0 
+2 0 0 1 2 
+1 0 0 2 1 
+EVAL: 43
+43
+41
+39
+38
+36
+30
+29
+28
+26
+25
+24
+23
+FINAL MATRIX: 
+1 1 1 0 2 
+1 2 0 1 0 
+0 2 1 1 1 
+2 0 0 0 1 
+0 1 2 0 0 
+2 0 2 1 2 
+2 1 0 2 1 
+0 0 1 2 0 
+BEST SOL EVAL: 23
+Time: 5.00000 sec
+cant_hosts=3;max_iters=50;max_resets=50
+INITIAL MATRIX: 
+1 1 2 1 2 
+0 1 0 2 2 
+1 2 0 2 2 
+0 2 1 0 1 
+1 0 2 0 1 
+0 0 2 2 0 
+1 1 2 2 2 
+1 2 0 1 0 
+EVAL: 44
+44
+41
+39
+38
+34
+31
+30
+29
+27
+26
+25
+24
+FINAL MATRIX: 
+0 0 2 1 2 
+1 1 2 0 0 
+1 0 1 2 1 
+2 1 1 1 0 
+1 2 0 1 1 
+0 2 1 0 2 
+0 2 0 2 0 
+2 1 0 2 2 
+BEST SOL EVAL: 24
+Time: 14.00000 sec
+cant_hosts=3;max_iters=25;max_resets=100
+INITIAL MATRIX: 
+2 0 0 2 2 
+0 1 2 1 0 
+2 2 0 2 2 
+1 1 2 1 1 
+2 2 2 2 0 
+2 2 1 0 2 
+1 0 0 2 0 
+2 0 0 0 2 
+EVAL: 51
+51
+46
+44
+41
+39
+38
+37
+35
+34
+33
+32
+31
+30
+29
+28
+27
+26
+25
+24
+23
+FINAL MATRIX: 
+2 1 0 1 1 
+1 0 0 2 0 
+1 2 1 1 0 
+2 0 1 0 1 
+0 0 2 1 2 
+0 1 2 0 0 
+0 1 1 2 2 
+1 2 0 0 2 
+BEST SOL EVAL: 23
+Time: 11.00000 sec
+cant_hosts=3;max_iters=100;max_resets=25
+INITIAL MATRIX: 
+1 0 0 0 2 
+2 2 1 1 0 
+0 2 2 2 1 
+0 2 2 0 0 
+0 2 0 0 1 
+2 0 0 0 2 
+0 1 0 1 0 
+0 0 0 2 2 
+EVAL: 45
+45
+44
+39
+38
+37
+34
+33
+32
+31
+30
+29
+28
+27
+26
+25
+24
+FINAL MATRIX: 
+0 2 1 2 1 
+1 2 0 0 2 
+1 1 2 2 0 
+2 1 1 0 0 
+1 0 1 1 2 
+2 1 0 1 1 
+0 0 0 1 0 
+2 0 2 0 1 
+BEST SOL EVAL: 24
+Time: 15.00000 sec
+cant_hosts=3;max_iters=100;max_resets=50
+INITIAL MATRIX: 
+2 2 0 2 2 
+2 2 1 2 0 
+2 1 2 1 0 
+1 2 1 0 0 
+2 1 0 2 0 
+2 2 1 0 0 
+1 1 0 2 0 
+2 1 0 2 2 
+EVAL: 62
+62
+57
+55
+53
+52
+50
+49
+44
+43
+42
+39
+37
+36
+34
+32
+31
+30
+29
+28
+27
+26
+25
+24
+23
+FINAL MATRIX: 
+0 1 2 1 1 
+2 1 1 1 0 
+1 0 2 0 0 
+2 0 0 2 1 
+0 2 1 2 0 
+0 0 1 0 2 
+1 1 0 2 2 
+1 2 0 1 2 
+BEST SOL EVAL: 23
+Time: 32.00000 sec
+cant_hosts=3;max_iters=50;max_resets=100
+INITIAL MATRIX: 
+1 2 1 1 2 
+1 0 1 0 1 
+1 0 2 1 0 
+0 1 1 2 1 
+1 0 0 2 0 
+1 0 2 1 2 
+2 2 1 1 0 
+1 2 2 2 2 
+EVAL: 47
+47
+42
+41
+38
+36
+35
+32
+31
+30
+27
+26
+25
+24
+FINAL MATRIX: 
+2 2 0 1 0 
+2 1 0 2 2 
+1 1 2 0 0 
+1 0 2 1 2 
+0 1 1 1 1 
+0 2 1 0 2 
+1 0 1 2 0 
+0 2 2 2 1 
+BEST SOL EVAL: 24
+Time: 28.00000 sec
+cant_hosts=3;max_iters=100;max_resets=100
+INITIAL MATRIX: 
+2 2 0 2 0 
+2 1 2 1 0 
+2 2 0 0 1 
+0 1 1 0 2 
+2 1 0 0 2 
+1 1 0 0 0 
+1 2 0 2 2 
+1 1 1 1 1 
+EVAL: 48
+48
+44
+41
+38
+35
+34
+31
+30
+29
+28
+27
+26
+25
+24
+23
+FINAL MATRIX: 
+0 1 1 1 2 
+1 0 0 1 2 
+1 1 2 2 0 
+2 1 0 2 1 
+0 2 0 1 0 
+2 0 1 0 0 
+0 0 2 0 1 
+1 2 1 0 1 
+BEST SOL EVAL: 23
+Time: 62.00000 sec
+cant_hosts=4;max_iters=25;max_resets=25
+INITIAL MATRIX: 
+3 1 0 3 3 
+0 2 1 0 2 
+2 0 3 2 3 
+0 0 2 3 0 
+2 0 0 3 3 
+2 2 2 0 0 
+2 3 1 2 3 
+EVAL: 26
+26
+25
+24
+23
+22
+21
+19
+18
+17
+16
+15
+14
+12
+11
+10
+9
+8
+FINAL MATRIX: 
+3 0 2 1 3 
+0 2 3 1 0 
+0 3 2 2 1 
+2 1 1 3 0 
+0 1 0 0 3 
+1 0 3 3 2 
+3 3 1 0 2 
+BEST SOL EVAL: 8
+Time: 2.00000 sec
+cant_hosts=4;max_iters=50;max_resets=25
+INITIAL MATRIX: 
+3 2 1 3 2 
+2 2 1 3 2 
+2 3 2 3 1 
+2 1 1 3 3 
+1 1 0 0 2 
+1 3 3 3 2 
+3 3 1 0 2 
+EVAL: 35
+35
+33
+32
+30
+27
+26
+25
+24
+21
+19
+18
+17
+16
+14
+13
+12
+11
+10
+8
+7
+FINAL MATRIX: 
+1 0 1 2 3 
+1 1 0 3 2 
+0 2 3 0 1 
+3 0 2 3 1 
+2 3 0 1 1 
+3 1 3 2 0 
+0 1 2 1 3 
+BEST SOL EVAL: 7
+Time: 6.00000 sec
+cant_hosts=4;max_iters=25;max_resets=50
+INITIAL MATRIX: 
+2 0 2 3 3 
+3 3 1 3 3 
+2 1 2 2 0 
+0 3 0 0 0 
+1 0 0 3 0 
+2 2 2 1 1 
+2 3 1 0 2 
+EVAL: 26
+26
+23
+22
+21
+20
+19
+18
+17
+15
+14
+13
+11
+10
+9
+8
+7
+FINAL MATRIX: 
+3 1 3 2 0 
+1 3 2 0 0 
+2 1 0 0 3 
+1 0 1 2 3 
+3 2 0 1 2 
+2 0 3 3 1 
+0 1 2 3 2 
+BEST SOL EVAL: 7
+Time: 5.00000 sec
+cant_hosts=4;max_iters=50;max_resets=50
+INITIAL MATRIX: 
+1 2 2 0 0 
+0 3 0 2 3 
+3 0 1 0 3 
+3 0 3 0 0 
+2 3 1 0 0 
+0 2 3 2 2 
+2 3 0 1 3 
+EVAL: 23
+23
+21
+20
+18
+17
+16
+15
+14
+13
+12
+11
+10
+9
+8
+7
+FINAL MATRIX: 
+2 1 2 0 3 
+2 0 0 3 1 
+3 0 1 2 0 
+1 0 3 0 2 
+3 2 0 1 2 
+0 2 1 3 3 
+1 3 2 1 0 
+BEST SOL EVAL: 7
+Time: 11.00000 sec
+cant_hosts=4;max_iters=25;max_resets=100
+INITIAL MATRIX: 
+0 3 0 0 2 
+3 0 2 0 1 
+3 3 0 0 0 
+2 3 3 2 0 
+1 3 0 0 1 
+1 3 1 0 2 
+1 0 2 1 0 
+EVAL: 30
+30
+28
+26
+25
+23
+21
+20
+19
+17
+16
+15
+14
+13
+12
+11
+10
+9
+8
+7
+FINAL MATRIX: 
+0 1 3 2 2 
+2 3 1 2 0 
+3 1 2 0 0 
+0 2 0 1 3 
+1 0 2 3 3 
+2 0 3 1 1 
+1 3 0 0 2 
+BEST SOL EVAL: 7
+Time: 9.00000 sec
+cant_hosts=4;max_iters=100;max_resets=25
+INITIAL MATRIX: 
+2 1 3 3 2 
+2 1 1 1 0 
+1 2 2 2 2 
+1 3 0 2 1 
+3 1 3 0 2 
+1 3 0 1 0 
+0 3 1 3 2 
+EVAL: 21
+21
+20
+19
+18
+17
+16
+15
+14
+13
+11
+10
+9
+8
+7
+FINAL MATRIX: 
+3 1 2 0 0 
+0 1 3 2 2 
+0 2 0 1 3 
+3 0 1 1 2 
+1 0 2 3 3 
+2 2 3 0 1 
+1 3 0 2 1 
+BEST SOL EVAL: 7
+Time: 13.00000 sec
+cant_hosts=4;max_iters=100;max_resets=50
+INITIAL MATRIX: 
+3 2 0 0 0 
+1 0 2 2 3 
+0 3 1 2 3 
+0 2 0 0 1 
+2 3 1 0 2 
+2 0 0 0 0 
+3 0 3 3 0 
+EVAL: 23
+23
+22
+21
+20
+18
+17
+16
+15
+14
+12
+10
+9
+7
+FINAL MATRIX: 
+0 1 3 3 2 
+3 3 2 1 0 
+0 3 1 2 3 
+3 2 0 2 1 
+2 1 2 0 3 
+1 3 0 0 2 
+2 0 1 3 0 
+BEST SOL EVAL: 7
+Time: 26.00000 sec
+cant_hosts=4;max_iters=50;max_resets=100
+INITIAL MATRIX: 
+2 2 0 1 3 
+3 1 0 3 0 
+0 2 3 1 0 
+1 0 0 2 2 
+2 3 1 2 2 
+3 1 3 1 1 
+2 3 3 2 0 
+EVAL: 20
+20
+19
+18
+17
+16
+15
+14
+13
+11
+10
+9
+8
+7
+FINAL MATRIX: 
+3 0 2 3 1 
+3 1 0 2 0 
+1 0 1 2 3 
+1 2 3 0 0 
+2 0 3 1 2 
+2 3 1 0 1 
+1 3 0 3 2 
+BEST SOL EVAL: 7
+Time: 24.00000 sec
+cant_hosts=4;max_iters=100;max_resets=100
+INITIAL MATRIX: 
+2 0 3 2 3 
+1 2 0 2 3 
+2 2 1 3 2 
+0 0 3 0 1 
+2 1 0 3 0 
+1 0 0 0 1 
+0 2 1 3 0 
+EVAL: 21
+21
+20
+19
+18
+17
+16
+15
+14
+13
+12
+11
+10
+9
+8
+7
+FINAL MATRIX: 
+0 3 2 0 1 
+1 3 0 2 3 
+3 0 1 2 0 
+0 2 3 1 3 
+1 0 2 3 2 
+3 2 0 3 1 
+2 1 1 0 3 
+BEST SOL EVAL: 7
+Time: 52.00000 sec
+cant_hosts=5;max_iters=25;max_resets=25
+INITIAL MATRIX: 
+3 0 2 2 4 
+3 2 1 2 0 
+1 3 2 3 2 
+0 4 0 4 1 
+3 4 3 3 0 
+0 4 4 0 0 
+EVAL: 15
+15
+14
+13
+12
+11
+10
+9
+8
+7
+6
+5
+4
+3
+2
+1
+0
+FINAL MATRIX: 
+3 4 2 0 1 
+4 1 3 0 2 
+0 3 2 1 4 
+3 0 4 1 2 
+2 4 0 1 3 
+1 0 2 4 3 
+BEST SOL EVAL: 0
+Time: 2.00000 sec
+cant_hosts=5;max_iters=50;max_resets=25
+INITIAL MATRIX: 
+1 1 2 4 1 
+4 0 1 0 0 
+4 2 0 3 2 
+4 0 3 4 2 
+2 2 2 3 2 
+2 2 2 3 0 
+EVAL: 19
+19
+18
+17
+16
+15
+14
+13
+12
+11
+10
+9
+8
+6
+5
+4
+3
+2
+0
+FINAL MATRIX: 
+3 2 4 1 0 
+4 2 1 0 3 
+0 2 3 4 1 
+4 3 0 2 1 
+4 1 2 3 0 
+2 4 0 1 3 
+BEST SOL EVAL: 0
+Time: 5.00000 sec
+cant_hosts=5;max_iters=25;max_resets=50
+INITIAL MATRIX: 
+3 1 2 0 0 
+3 2 0 2 3 
+0 2 2 3 2 
+2 2 3 1 0 
+2 3 2 2 3 
+0 0 4 0 0 
+EVAL: 14
+14
+12
+11
+10
+9
+8
+7
+6
+4
+3
+2
+1
+0
+FINAL MATRIX: 
+3 1 2 4 0 
+1 4 0 2 3 
+0 4 1 3 2 
+4 2 3 1 0 
+0 3 2 1 4 
+1 3 4 0 2 
+BEST SOL EVAL: 0
+Time: 4.00000 sec
+cant_hosts=5;max_iters=50;max_resets=50
+INITIAL MATRIX: 
+2 4 1 1 4 
+1 1 4 0 0 
+1 2 2 1 3 
+3 4 3 4 2 
+0 4 2 3 4 
+1 3 3 3 4 
+EVAL: 13
+13
+11
+10
+9
+8
+7
+6
+4
+3
+2
+1
+0
+FINAL MATRIX: 
+1 4 2 0 3 
+0 3 2 1 4 
+1 0 3 4 2 
+4 1 0 2 3 
+2 0 4 1 3 
+3 1 2 4 0 
+BEST SOL EVAL: 0
+Time: 9.00000 sec
+cant_hosts=5;max_iters=25;max_resets=100
+INITIAL MATRIX: 
+3 4 2 2 1 
+3 0 4 3 1 
+2 0 2 3 3 
+2 1 2 3 0 
+2 0 4 1 4 
+1 2 3 2 2 
+EVAL: 14
+14
+13
+11
+10
+9
+8
+7
+6
+5
+4
+3
+2
+1
+0
+FINAL MATRIX: 
+0 4 3 2 1 
+3 2 4 0 1 
+1 4 2 0 3 
+4 1 2 3 0 
+2 0 3 1 4 
+1 2 3 4 0 
+BEST SOL EVAL: 0
+Time: 8.00000 sec
+cant_hosts=5;max_iters=100;max_resets=25
+INITIAL MATRIX: 
+3 3 1 2 0 
+1 2 1 4 0 
+4 1 1 1 4 
+3 1 2 1 3 
+2 3 1 1 4 
+1 3 3 4 2 
+EVAL: 15
+15
+14
+13
+12
+11
+10
+8
+7
+6
+5
+4
+3
+2
+1
+0
+FINAL MATRIX: 
+3 4 1 2 0 
+0 2 1 4 3 
+1 2 0 3 4 
+4 0 2 1 3 
+2 3 1 0 4 
+1 0 3 4 2 
+BEST SOL EVAL: 0
+Time: 10.00000 sec
+cant_hosts=5;max_iters=100;max_resets=50
+INITIAL MATRIX: 
+0 1 0 1 0 
+4 4 4 3 2 
+1 0 3 3 3 
+3 4 4 0 3 
+0 0 0 0 4 
+2 2 4 4 2 
+EVAL: 18
+18
+17
+16
+15
+14
+12
+11
+10
+9
+8
+7
+6
+5
+4
+3
+1
+0
+FINAL MATRIX: 
+2 3 0 1 4 
+0 1 4 3 2 
+1 0 2 4 3 
+2 4 1 0 3 
+3 1 2 0 4 
+3 2 0 4 1 
+BEST SOL EVAL: 0
+Time: 20.00000 sec
+cant_hosts=5;max_iters=50;max_resets=100
+INITIAL MATRIX: 
+4 4 1 1 4 
+3 4 1 4 1 
+4 3 1 2 0 
+1 4 3 3 0 
+4 2 4 3 0 
+0 2 2 3 3 
+EVAL: 14
+14
+12
+11
+10
+9
+8
+7
+6
+5
+3
+1
+0
+FINAL MATRIX: 
+2 0 3 1 4 
+3 0 2 4 1 
+4 3 1 2 0 
+1 4 3 0 2 
+1 2 4 3 0 
+0 1 2 3 4 
+BEST SOL EVAL: 0
+Time: 18.00000 sec
+cant_hosts=5;max_iters=100;max_resets=100
+INITIAL MATRIX: 
+0 4 2 1 3 
+1 1 2 0 1 
+0 0 4 2 2 
+2 3 3 2 3 
+3 2 4 2 4 
+2 2 0 2 0 
+EVAL: 15
+15
+14
+13
+12
+11
+10
+9
+8
+7
+6
+5
+4
+3
+2
+1
+0
+FINAL MATRIX: 
+2 4 0 3 1 
+3 1 0 2 4 
+0 2 3 4 1 
+4 0 1 2 3 
+3 4 1 0 2 
+1 0 4 3 2 
+BEST SOL EVAL: 0
+Time: 40.00000 sec
