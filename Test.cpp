@@ -7,7 +7,7 @@
 #include <cstdlib>
 #include <time.h>
 using namespace std;
-#define MAX_ITERS 100
+#define MAX_ITERS 20
 
 class Boat{
     public:
@@ -73,16 +73,16 @@ void asign_hosts(vector<Boat> *boats, int cant_hosts){
     return;
 }
 
-int DIFF(vector< vector<int>> matrix, int cant_host){
+int DIFF(vector< vector<int>> matrix, int T){
     int count;
     int total_penalty = 0;
     for (vector< vector<int>>::iterator it=matrix.begin(); it!=matrix.end(); ++it){
         sort(it->begin(), it->end());
         count = distance(it->begin(), unique(it->begin(), it->end()));
         //cout << count << endl;
-        total_penalty = total_penalty + (cant_host - count);
+        total_penalty = total_penalty + (T - count);
     }
-    //cout << "DIFF total penalty: " << total_penalty << endl;
+    cout << "DIFF total penalty: " << total_penalty << endl;
     return total_penalty;
 }
 
@@ -107,7 +107,7 @@ int ONCE(vector< vector<int>> matrix){
         for(j = i+1; j < guest; ++j)
             total_penalty += meet(matrix, i, j);
     }
-    //cout << "ONCE total penalty: " << total_penalty << endl;
+    cout << "ONCE total penalty: " << total_penalty << endl;
     return total_penalty;
 }
 
@@ -129,7 +129,7 @@ int CAPA(vector<Boat> *boats, vector< vector<int>> matrix, int T, int cant_hosts
             boats->at(k).reset_capacity();
         }
     }
-    //cout << "CAPA total penalty: " << total_penalty << endl;
+    cout << "CAPA total penalty: " << total_penalty << endl;
     return total_penalty;
 }
 
@@ -149,7 +149,7 @@ vector< vector<int>> generate_random_sol(int Y, int T, int cant_hosts){
 
 int evaluation(int cant_hosts, int T, vector< vector<int>> *matrix, vector<Boat> *boats, int capa_penalty = 1, int diff_penalty = 1, int once_penalty = 1){
     int capa = CAPA(boats, *matrix, T, cant_hosts);
-    int diff = DIFF(*matrix, cant_hosts);
+    int diff = DIFF(*matrix, T);
     int once = ONCE(*matrix);
     return (capa + diff + once);
 }
@@ -240,13 +240,33 @@ int main(){
     vector<Boat> boats = init_boats(Y, specs);
     sort(boats.begin(), boats.begin()+Y, sort_funct);
 
-    HC(&boats, 4, Y, T);
-
-    /*vector< vector<int>> test = generate_random_sol(Y, T, 4);
+    //HC(&boats, 4, Y, T);
+    /*vector< vector<int>> test = {{1,2,3,2,0}, 
+                                 {3,1,3,0,2}, 
+                                 {2,1,0,3,3}, 
+                                 {3,2,1,3,1}, 
+                                 {2,0,2,1,1},
+                                 {1,3,2,0,3},
+                                 {0,3,1,1,2}};*/
+    /*vector< vector<int>> test = generate_random_sol(Y, T, 4);*/
+    /*vector< vector<int>> test = {{0,2,3,1,3}, 
+                                 {3,0,1,1,2}, 
+                                 {2,3,1,0,0}, 
+                                 {1,3,0,3,2}, 
+                                 {1,0,2,0,3},
+                                 {0,1,2,3,1},
+                                 {2,1,3,2,2}};*/
+    vector< vector<int>> test = {{0,2,2,3,1}, 
+                                 {0,1,0,2,3}, 
+                                 {3,0,1,2,1}, 
+                                 {3,2,0,1,0}, 
+                                 {1,0,0,3,2},
+                                 {2,3,1,3,0},
+                                 {2,1,3,0,1}};
     int best_sol = evaluation(4, T, &test, &boats);
     print_matrix(test);
-    cout << "BEST 1: " << best_sol << endl;
-    test = movement(test, &boats, 4, &best_sol, T);
-    cout << "BEST 2: " << best_sol << endl;*/
+    cout << "EVAL: " << best_sol << endl;
+    //test = movement(test, &boats, 4, &best_sol, T);
+    //cout << "BEST 2: " << best_sol << endl;
     return 0;
 }
