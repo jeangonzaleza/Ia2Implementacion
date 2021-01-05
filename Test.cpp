@@ -56,7 +56,7 @@ vector<Boat> init_boats(int Y, vector<string> specs){
         spec = split(specs.at(i), ",");
         crew_size = stoi(spec.at(1));
         total_cap = stoi(spec.at(0));
-        Boat new_boat(i, false, crew_size, total_cap);
+        Boat new_boat(i+1, false, crew_size, total_cap);
         boats.push_back(new_boat);
     }
     return boats;
@@ -64,6 +64,10 @@ vector<Boat> init_boats(int Y, vector<string> specs){
 
 bool sort_funct(Boat i, Boat j){
     return i.capacity > j.capacity;
+}
+
+bool sort_by_id(Boat i, Boat j){
+    return i.id < j.id;
 }
 
 void asign_hosts(vector<Boat> *boats, int cant_hosts){
@@ -95,17 +99,22 @@ int meet(vector< vector<int>> matrix, int g1, int g2){
         //cout << matrix.at(g1).at(j) << " y " << matrix.at(g2).at(j) << endl;
     }
     //cout << "meetings: " << meetings << endl;
-    if (meetings <= 1) return 0;
+    if (meetings == 1) return 0;
+    else if(meetings == 0) return -1;
     return (meetings - 1);
 }
 
 int ONCE(vector< vector<int>> matrix){
     int total_penalty = 0;
     int guest = matrix.size();
-    int i, j;
+    int i, j, meetings;
     for(i = 0; i < (guest - 1); ++i){
-        for(j = i+1; j < guest; ++j)
-            total_penalty += meet(matrix, i, j);
+        for(j = i+1; j < guest; ++j){
+            meetings = meet(matrix, i, j);
+            total_penalty += meetings;
+            if(meetings == -1)
+                total_penalty += 2;
+        }
     }
     //cout << "ONCE total penalty: " << total_penalty << endl;
     return total_penalty;
@@ -147,11 +156,15 @@ vector< vector<int>> generate_random_sol(int Y, int T, int cant_hosts){
     return matrix;
 }
 
-int evaluation(int cant_hosts, int T, vector< vector<int>> *matrix, vector<Boat> *boats, int capa_penalty = 1, int diff_penalty = 1, int once_penalty = 1){
+int evaluation(int cant_hosts, int T, vector< vector<int>> *matrix, vector<Boat> *boats, int capa_penalty = 2, int diff_penalty = 1, int once_penalty = 3){
+    //cout << "none" << endl;
     int capa = CAPA(boats, *matrix, T, cant_hosts);
+    //cout << "capa" << endl;
     int diff = DIFF(*matrix, T);
+    //cout << "diff" << endl;
     int once = ONCE(*matrix);
-    return (capa + diff + once);
+    //cout << "once" << endl;
+    return (capa*capa_penalty + diff*diff_penalty + once*once_penalty);
 }
 
 void print_matrix(vector< vector<int>> matrix, ofstream &File){
@@ -234,11 +247,90 @@ void HC(ofstream &File, vector<Boat> *boats, int cant_hosts, int Y, int T, int M
     return;
 }
 
+vector< vector<int>> HC_out(vector<Boat> *boats, int cant_hosts, int Y, int T, int MAX_ITERS=100, int MAX_RESETS=100){
+    int stop = 0;
+    int stuck, new_sol;
+    int best_sol = 10000;
+    vector< vector<int>> matrix, best_matrix;
+    while(stop < MAX_RESETS){
+        matrix = generate_random_sol(Y, T, cant_hosts);
+        new_sol = evaluation(cant_hosts, T, &matrix, boats);
+        if(new_sol < best_sol){
+            best_sol = new_sol;
+            best_matrix = matrix;
+        }
+        stuck = 0;
+        do{
+            matrix = movement(matrix, boats, cant_hosts, &new_sol, T);
+            if(new_sol < best_sol){
+                best_sol = new_sol;
+                best_matrix = matrix;
+            }
+            stuck++;
+        } while(stuck < MAX_ITERS && best_sol <= new_sol);
+        stop++;
+    }
+    return best_matrix;
+}
+
+void write_output(ofstream &File, vector< vector< vector<int> > > *solutions, int T, int Y, vector<Boat> *boats){
+    int best_i = 0;
+    int best_eval = 100000;
+    int eval;
+    unsigned int i,j,k;
+    for (i = 0; i < solutions->size(); ++i){
+        eval = evaluation(i+1, T, &(solutions->at(i)), boats);
+        if(eval < best_eval){
+            best_i = i;
+            best_eval = eval;
+        }
+    }
+    vector< vector<int>> adjacent_list;
+    vector<int> yates;
+    int cant_hosts = best_i + 1;
+    int yat;
+    int host, id_host, id_guest;
+    for(yat = 0; yat < Y; ++yat)
+        adjacent_list.push_back(yates);
+    vector< vector<int>> *best_mat = &(solutions->at(best_i));
+    for(j = 0; j < best_mat->at(0).size(); ++j){
+        for(i = 0; i < best_mat->size(); ++i){
+            host = best_mat->at(i).at(j);
+            id_host = boats->at(host).id;
+            boats->at(host).capacity -= boats->at(cant_hosts+i).crew_size;
+            id_guest = boats->at(cant_hosts+i).id;
+            adjacent_list.at(id_host-1).push_back(id_guest);
+            
+        }
+        sort(boats->begin(), boats->begin()+Y, sort_by_id);
+        File << "t=" << j+1 << endl << "----------" << endl;
+        for(i = 0; i < adjacent_list.size(); ++i){
+            File << i+1 << " -> ";
+            if(!adjacent_list.at(i).empty()){
+                for(k = 0; k < adjacent_list.at(i).size(); ++k){
+                    File << adjacent_list.at(i).at(k) << ",";
+                }
+                File << "[" << (boats->at(i).total_capacity - boats->at(i).capacity) << "/" << boats->at(i).total_capacity << "]" << endl;
+            }
+            else
+                File << "0" << endl;
+            boats->at(i).reset_capacity();
+            adjacent_list.at(i).clear();
+        }
+        sort(boats->begin(), boats->begin()+Y, sort_funct);
+    }
+    File << "La cantidad de yates anfitriones óptimos es: " << cant_hosts << endl;
+
+    return;
+}
+
 int main(){
     int Y, T, i, hosts;
     string boat_spec;
     ifstream p_instances;
-    string out_path;
+    string out_path, out_path_true;
+    time_t start, end;
+    vector< vector< vector<int> > > solutions;
 
     for(i = 1; i < 11; ++i){
         if(i != 10){
@@ -250,6 +342,7 @@ int main(){
             getline(p_instances, boat_spec);
             p_instances.close();
             out_path = "./OutputPPP/out_Ian0" + to_string(i) + ".txt";
+            out_path_true = "./OutputPPP/Ian0" + to_string(i) + ".out";
         }
         else{
             ifstream p_instances("./Instancias PPP/Instancias CSPLib/Ian10.txt");
@@ -260,6 +353,7 @@ int main(){
             getline(p_instances, boat_spec);
             p_instances.close();
             out_path = "./OutputPPP/out_Ian10.txt";
+            out_path_true = "./OutputPPP/Ian10.out";
         }
         ofstream File(out_path);
 
@@ -267,7 +361,7 @@ int main(){
         vector<Boat> boats = init_boats(Y, specs);
         sort(boats.begin(), boats.begin()+Y, sort_funct);
         //HC(File, &boats, 4, Y, T, 25, 25);
-        for(hosts = 1; hosts <= T; ++hosts){
+        /*for(hosts = 1; hosts < Y; ++hosts){
             HC(File, &boats, hosts, Y, T, 25, 25);
             HC(File, &boats, hosts, Y, T, 50, 25);
             HC(File, &boats, hosts, Y, T, 25, 50);
@@ -280,7 +374,21 @@ int main(){
 
             HC(File, &boats, hosts, Y, T, 100, 100);
         }
-        File.close();
+        File.close();*/
+
+        ofstream output_file(out_path_true);
+        time(&start);
+        for(hosts = 1; hosts < Y; ++hosts){
+            solutions.push_back(HC_out(&boats, hosts, Y, T, 100, 100));
+        }
+        time(&end);
+        write_output(output_file, &solutions, T, Y, &boats);
+        double time_taken = double(end - start);
+        output_file << "Tiempo de ejecución: " << fixed 
+            << time_taken << setprecision(2); 
+        output_file << " [s]" << endl;
+        output_file.close();
+        solutions.clear();
     }
 
     /*vector< vector<int>> test = {{1,2,3,2,0}, 
