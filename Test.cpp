@@ -221,7 +221,7 @@ vector< vector<int>> HC(ofstream &File, vector<Boat> *boats, int cant_hosts, int
             candidata = matrix;
         }
         do{
-            matrix = movement(matrix, boats, cant_hosts, &new_sol, T);
+            matrix = movement(matrix, boats, cant_hosts, &new_sol, T, op, dp, cp);
             if(new_sol < best_sol){
                 best_sol = new_sol;
                 File << best_sol << endl;
