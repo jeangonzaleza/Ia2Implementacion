@@ -212,11 +212,11 @@ void HC(ofstream &File, vector<Boat> *boats, int cant_hosts, int Y, int T, int M
     while(stop < MAX_RESETS){
         matrix = generate_random_sol(Y, T, cant_hosts);
         new_sol = evaluation(cant_hosts, T, &matrix, boats);
-        if(stop == 0){
+        /*if(stop == 0){
             File << "INITIAL MATRIX: "<< endl; 
             print_matrix(matrix, File); 
             File << "EVAL: " << new_sol << endl;
-        }
+        }*/
         if(new_sol < best_sol){
             best_sol = new_sol;
             File << best_sol << endl;
@@ -234,9 +234,9 @@ void HC(ofstream &File, vector<Boat> *boats, int cant_hosts, int Y, int T, int M
         } while(stuck < MAX_ITERS && best_sol <= new_sol);
         stop++;
     }
-    File << "FINAL MATRIX: " << endl;
+    /*File << "FINAL MATRIX: " << endl;
     print_matrix(best_matrix, File);
-    File << "BEST SOL EVAL: " << best_sol << endl;
+    File << "BEST SOL EVAL: " << best_sol << endl;*/
     time(&end);
 
     double time_taken = double(end - start);
@@ -361,7 +361,7 @@ int main(){
         vector<Boat> boats = init_boats(Y, specs);
         sort(boats.begin(), boats.begin()+Y, sort_funct);
         //HC(File, &boats, 4, Y, T, 25, 25);
-        /*for(hosts = 1; hosts < Y; ++hosts){
+        for(hosts = 1; hosts < Y; ++hosts){
             HC(File, &boats, hosts, Y, T, 25, 25);
             HC(File, &boats, hosts, Y, T, 50, 25);
             HC(File, &boats, hosts, Y, T, 25, 50);
@@ -374,9 +374,9 @@ int main(){
 
             HC(File, &boats, hosts, Y, T, 100, 100);
         }
-        File.close();*/
+        File.close();
 
-        ofstream output_file(out_path_true);
+        /*ofstream output_file(out_path_true);
         time(&start);
         for(hosts = 1; hosts < Y; ++hosts){
             solutions.push_back(HC_out(&boats, hosts, Y, T, 100, 100));
@@ -388,35 +388,7 @@ int main(){
             << time_taken << setprecision(2); 
         output_file << " [s]" << endl;
         output_file.close();
-        solutions.clear();
+        solutions.clear();*/
     }
-
-    /*vector< vector<int>> test = {{1,2,3,2,0}, 
-                                 {3,1,3,0,2}, 
-                                 {2,1,0,3,3}, 
-                                 {3,2,1,3,1}, 
-                                 {2,0,2,1,1},
-                                 {1,3,2,0,3},
-                                 {0,3,1,1,2}};*/
-    /*vector< vector<int>> test = generate_random_sol(Y, T, 4);*/
-    /*vector< vector<int>> test = {{0,2,3,1,3}, 
-                                 {3,0,1,1,2}, 
-                                 {2,3,1,0,0}, 
-                                 {1,3,0,3,2}, 
-                                 {1,0,2,0,3},
-                                 {0,1,2,3,1},
-                                 {2,1,3,2,2}};*/
-    /*vector< vector<int>> test = {{0,2,2,3,1}, 
-                                 {0,1,0,2,3}, 
-                                 {3,0,1,2,1}, 
-                                 {3,2,0,1,0}, 
-                                 {1,0,0,3,2},
-                                 {2,3,1,3,0},
-                                 {2,1,3,0,1}};
-    int best_sol = evaluation(4, T, &test, &boats);
-    print_matrix(test);
-    cout << "EVAL: " << best_sol << endl;*/
-    //test = movement(test, &boats, 4, &best_sol, T);
-    //cout << "BEST 2: " << best_sol << endl;
     return 0;
 }

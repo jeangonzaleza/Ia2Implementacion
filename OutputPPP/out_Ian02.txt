@@ -1,0 +1,238 @@
+cant_hosts=1;max_iters=25;max_resets=25
+150
+Time: 0.000000 sec
+cant_hosts=1;max_iters=50;max_resets=25
+150
+Time: 1.00000 sec
+cant_hosts=1;max_iters=25;max_resets=50
+150
+Time: 0.00000 sec
+cant_hosts=1;max_iters=50;max_resets=50
+150
+Time: 1.00000 sec
+cant_hosts=1;max_iters=25;max_resets=100
+150
+Time: 2.00000 sec
+cant_hosts=1;max_iters=100;max_resets=25
+150
+Time: 1.00000 sec
+cant_hosts=1;max_iters=100;max_resets=50
+150
+Time: 2.00000 sec
+cant_hosts=1;max_iters=50;max_resets=100
+150
+Time: 2.00000 sec
+cant_hosts=1;max_iters=100;max_resets=100
+150
+Time: 5.00000 sec
+cant_hosts=2;max_iters=25;max_resets=25
+58
+55
+52
+41
+36
+33
+30
+28
+24
+Time: 0.00000 sec
+cant_hosts=2;max_iters=50;max_resets=25
+58
+55
+52
+41
+36
+33
+30
+28
+24
+Time: 1.00000 sec
+cant_hosts=2;max_iters=25;max_resets=50
+47
+44
+41
+36
+34
+30
+27
+24
+Time: 0.00000 sec
+cant_hosts=2;max_iters=50;max_resets=50
+47
+44
+41
+36
+34
+30
+27
+24
+Time: 2.00000 sec
+cant_hosts=2;max_iters=25;max_resets=100
+30
+27
+24
+Time: 1.00000 sec
+cant_hosts=2;max_iters=100;max_resets=25
+30
+28
+24
+Time: 1.00000 sec
+cant_hosts=2;max_iters=100;max_resets=50
+33
+30
+27
+24
+Time: 2.00000 sec
+cant_hosts=2;max_iters=50;max_resets=100
+48
+44
+41
+36
+33
+30
+27
+24
+Time: 3.00000 sec
+cant_hosts=2;max_iters=100;max_resets=100
+36
+33
+30
+27
+24
+Time: 5.00000 sec
+cant_hosts=3;max_iters=25;max_resets=25
+13
+10
+8
+7
+6
+Time: 0.00000 sec
+cant_hosts=3;max_iters=50;max_resets=25
+13
+10
+8
+7
+6
+Time: 1.00000 sec
+cant_hosts=3;max_iters=25;max_resets=50
+11
+10
+7
+6
+Time: 0.00000 sec
+cant_hosts=3;max_iters=50;max_resets=50
+11
+10
+7
+6
+Time: 1.00000 sec
+cant_hosts=3;max_iters=25;max_resets=100
+16
+13
+12
+9
+6
+Time: 1.00000 sec
+cant_hosts=3;max_iters=100;max_resets=25
+13
+12
+9
+7
+6
+Time: 1.00000 sec
+cant_hosts=3;max_iters=100;max_resets=50
+26
+20
+19
+16
+13
+10
+6
+Time: 1.00000 sec
+cant_hosts=3;max_iters=50;max_resets=100
+12
+9
+6
+Time: 2.00000 sec
+cant_hosts=3;max_iters=100;max_resets=100
+15
+9
+6
+Time: 4.00000 sec
+cant_hosts=4;max_iters=25;max_resets=25
+3
+2
+Time: 0.00000 sec
+cant_hosts=4;max_iters=50;max_resets=25
+3
+2
+Time: 0.00000 sec
+cant_hosts=4;max_iters=25;max_resets=50
+3
+2
+Time: 0.00000 sec
+cant_hosts=4;max_iters=50;max_resets=50
+3
+2
+Time: 1.00000 sec
+cant_hosts=4;max_iters=25;max_resets=100
+8
+4
+3
+2
+Time: 0.00000 sec
+cant_hosts=4;max_iters=100;max_resets=25
+8
+4
+3
+2
+Time: 1.00000 sec
+cant_hosts=4;max_iters=100;max_resets=50
+6
+2
+Time: 1.00000 sec
+cant_hosts=4;max_iters=50;max_resets=100
+4
+3
+2
+Time: 1.00000 sec
+cant_hosts=4;max_iters=100;max_resets=100
+3
+2
+Time: 2.00000 sec
+cant_hosts=5;max_iters=25;max_resets=25
+1
+0
+Time: 0.00000 sec
+cant_hosts=5;max_iters=50;max_resets=25
+1
+0
+Time: 0.00000 sec
+cant_hosts=5;max_iters=25;max_resets=50
+1
+0
+Time: 0.00000 sec
+cant_hosts=5;max_iters=50;max_resets=50
+1
+0
+Time: 0.00000 sec
+cant_hosts=5;max_iters=25;max_resets=100
+1
+0
+Time: 0.00000 sec
+cant_hosts=5;max_iters=100;max_resets=25
+1
+0
+Time: 0.00000 sec
+cant_hosts=5;max_iters=100;max_resets=50
+1
+0
+Time: 1.00000 sec
+cant_hosts=5;max_iters=50;max_resets=100
+1
+0
+Time: 0.00000 sec
+cant_hosts=5;max_iters=100;max_resets=100
+1
+0
+Time: 1.00000 sec
