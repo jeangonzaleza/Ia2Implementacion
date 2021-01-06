@@ -178,7 +178,7 @@ void print_matrix(vector< vector<int>> matrix, ofstream &File){
     }
 }
 
-vector< vector<int>> movement(vector< vector<int>> matrix, vector<Boat> *boats, int cant_host, int *best_sol, int T){
+vector< vector<int>> movement(vector< vector<int>> matrix, vector<Boat> *boats, int cant_host, int *best_sol, int T, int op, int dp, int cp){
     vector< vector<int>> copy_matrix = matrix;    
     unsigned int i, j;
     int k, new_sol;
@@ -187,7 +187,7 @@ vector< vector<int>> movement(vector< vector<int>> matrix, vector<Boat> *boats, 
         for(j = 0; j < copy_matrix.at(0).size(); ++j){
             for(k = 0; k < cant_host; ++k){
                 copy_matrix.at(i).at(j) = k % cant_host;
-                new_sol = evaluation(cant_host, T, &copy_matrix, boats);
+                new_sol = evaluation(cant_host, T, &copy_matrix, boats, cp, dp, op);
                 //print_matrix(copy_matrix);
                 //cout << "Eval: " << new_sol << endl;
                 if(new_sol < *best_sol){
@@ -201,75 +201,50 @@ vector< vector<int>> movement(vector< vector<int>> matrix, vector<Boat> *boats, 
     return matrix;
 }
 
-void HC(ofstream &File, vector<Boat> *boats, int cant_hosts, int Y, int T, int MAX_ITERS=100, int MAX_RESETS=100){
+vector< vector<int>> HC(ofstream &File, vector<Boat> *boats, int cant_hosts, int Y, int T, int op, int dp, int cp,int MAX_RESETS=100){
     time_t start, end;
     time(&start);
     int stop = 0;
-    int stuck, new_sol;
-    int best_sol = 10000;
-    vector< vector<int>> matrix, best_matrix;
-    File << "cant_hosts=" << cant_hosts << ";max_iters=" << MAX_ITERS << ";max_resets="<< MAX_RESETS << endl; 
+    int new_sol;
+    int best_sol; //Candidata a mejor solucion
+    int mejor_solucion_absoluta = 1000000;
+    vector< vector<int>> matrix, best_matrix, candidata;
+    File << "cant_hosts=" << cant_hosts << ";max_resets="<< MAX_RESETS << ";CAPA penalty=" << cp << ";DIFF penalty=" << dp << ";ONCE penalty=" << op <<endl; 
     while(stop < MAX_RESETS){
+        best_sol = 1000000;
         matrix = generate_random_sol(Y, T, cant_hosts);
-        new_sol = evaluation(cant_hosts, T, &matrix, boats);
-        /*if(stop == 0){
-            File << "INITIAL MATRIX: "<< endl; 
-            print_matrix(matrix, File); 
-            File << "EVAL: " << new_sol << endl;
-        }*/
+        new_sol = evaluation(cant_hosts, T, &matrix, boats, cp, dp, op);
+        bool hay_mejora = true;
         if(new_sol < best_sol){
             best_sol = new_sol;
             File << best_sol << endl;
-            best_matrix = matrix;
+            candidata = matrix;
         }
-        stuck = 0;
         do{
             matrix = movement(matrix, boats, cant_hosts, &new_sol, T);
             if(new_sol < best_sol){
                 best_sol = new_sol;
                 File << best_sol << endl;
-                best_matrix = matrix;
+                candidata = matrix;
             }
-            stuck++;
-        } while(stuck < MAX_ITERS && best_sol <= new_sol);
+            else{
+                hay_mejora = false;
+            }
+        } while(hay_mejora);
+        if(best_sol < mejor_solucion_absoluta){
+            mejor_solucion_absoluta = best_sol;
+            best_matrix = candidata;
+        }
         stop++;
+
     }
-    /*File << "FINAL MATRIX: " << endl;
-    print_matrix(best_matrix, File);
-    File << "BEST SOL EVAL: " << best_sol << endl;*/
+    File << "BEST SOL EVAL: " << mejor_solucion_absoluta << endl;
     time(&end);
 
     double time_taken = double(end - start);
     File << "Time: " << fixed 
          << time_taken << setprecision(5); 
     File << " sec" << endl; 
-
-    return;
-}
-
-vector< vector<int>> HC_out(vector<Boat> *boats, int cant_hosts, int Y, int T, int MAX_ITERS=100, int MAX_RESETS=100){
-    int stop = 0;
-    int stuck, new_sol;
-    int best_sol = 10000;
-    vector< vector<int>> matrix, best_matrix;
-    while(stop < MAX_RESETS){
-        matrix = generate_random_sol(Y, T, cant_hosts);
-        new_sol = evaluation(cant_hosts, T, &matrix, boats);
-        if(new_sol < best_sol){
-            best_sol = new_sol;
-            best_matrix = matrix;
-        }
-        stuck = 0;
-        do{
-            matrix = movement(matrix, boats, cant_hosts, &new_sol, T);
-            if(new_sol < best_sol){
-                best_sol = new_sol;
-                best_matrix = matrix;
-            }
-            stuck++;
-        } while(stuck < MAX_ITERS && best_sol <= new_sol);
-        stop++;
-    }
     return best_matrix;
 }
 
@@ -362,26 +337,25 @@ int main(){
         sort(boats.begin(), boats.begin()+Y, sort_funct);
         //HC(File, &boats, 4, Y, T, 25, 25);
         for(hosts = 1; hosts < Y; ++hosts){
-            HC(File, &boats, hosts, Y, T, 25, 25);
-            HC(File, &boats, hosts, Y, T, 50, 25);
-            HC(File, &boats, hosts, Y, T, 25, 50);
-            HC(File, &boats, hosts, Y, T, 50, 50);
+            HC(File, &boats, hosts, Y, T, 1, 1, 1);
+            HC(File, &boats, hosts, Y, T, 5, 1, 1);
+            HC(File, &boats, hosts, Y, T, 1, 5, 1);
+            HC(File, &boats, hosts, Y, T, 1, 1, 5);
 
-            HC(File, &boats, hosts, Y, T, 25, 100);
-            HC(File, &boats, hosts, Y, T, 100, 25);
-            HC(File, &boats, hosts, Y, T, 100, 50);
-            HC(File, &boats, hosts, Y, T, 50, 100);
-
-            HC(File, &boats, hosts, Y, T, 100, 100);
+            HC(File, &boats, hosts, Y, T, 1, 1, 1, 1000);
+            HC(File, &boats, hosts, Y, T, 5, 1, 1, 1000);
+            HC(File, &boats, hosts, Y, T, 1, 5, 1, 1000);
+            HC(File, &boats, hosts, Y, T, 1, 1, 5, 1000);
         }
         File.close();
 
         /*ofstream output_file(out_path_true);
         time(&start);
         for(hosts = 1; hosts < Y; ++hosts){
-            solutions.push_back(HC_out(&boats, hosts, Y, T, 100, 100));
+            solutions.push_back(HC(File, &boats, hosts, Y, T, 5, 1, 2, 1000));
         }
         time(&end);
+        
         write_output(output_file, &solutions, T, Y, &boats);
         double time_taken = double(end - start);
         output_file << "Tiempo de ejecución: " << fixed 
