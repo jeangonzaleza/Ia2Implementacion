@@ -70,10 +70,19 @@ bool sort_by_id(Boat i, Boat j){
     return i.id < j.id;
 }
 
+bool sort_by_host(Boat i, Boat j){
+    return i.host > j.host;
+}
+
 void asign_hosts(vector<Boat> *boats, int cant_hosts){
     for (vector<Boat>::iterator it=boats->begin(); it!=boats->begin()+cant_hosts; ++it){
         it->host = true;
     }
+    return;
+}
+
+void asign_hosts_big(Boat *boat){
+    boat->host = 1;
     return;
 }
 
@@ -300,14 +309,14 @@ void write_output(ofstream &File, vector< vector< vector<int> > > *solutions, in
 }
 
 int main(){
-    int Y, T, i, hosts;
+    int Y, T, i;
     string boat_spec;
     ifstream p_instances;
     string out_path, out_path_true;
     time_t start, end;
     vector< vector< vector<int> > > solutions;
 
-    for(i = 1; i < 11; ++i){
+    /*for(i = 1; i < 11; ++i){
         if(i != 10){
             ifstream p_instances("./Instancias PPP/Instancias CSPLib/Ian0" + to_string(i) + ".txt");
             getline(p_instances, boat_spec);
@@ -330,12 +339,15 @@ int main(){
             out_path = "./OutputPPP/out_Ian10.txt";
             out_path_true = "./OutputPPP/Ian10.out";
         }
-        ofstream File(out_path);
 
         vector<string> specs = split(boat_spec, ";");
         vector<Boat> boats = init_boats(Y, specs);
-        sort(boats.begin(), boats.begin()+Y, sort_funct);
-        //HC(File, &boats, 4, Y, T, 25, 25);
+        sort(boats.begin(), boats.begin()+Y, sort_funct);*/
+
+        // ========== EXPERIMENTOS MODIFICANDO PARAMETROS ==========//
+
+        /*ofstream File(out_path);
+
         for(hosts = 1; hosts < Y; ++hosts){
             HC(File, &boats, hosts, Y, T, 1, 1, 1);
             HC(File, &boats, hosts, Y, T, 5, 1, 1);
@@ -347,7 +359,9 @@ int main(){
             HC(File, &boats, hosts, Y, T, 1, 5, 1, 1000);
             HC(File, &boats, hosts, Y, T, 1, 1, 5, 1000);
         }
-        File.close();
+        File.close();*/
+
+        // ========== Instancias pequeñas ==========//
 
         /*ofstream output_file(out_path_true);
         time(&start);
@@ -362,7 +376,56 @@ int main(){
             << time_taken << setprecision(2); 
         output_file << " [s]" << endl;
         output_file.close();
-        solutions.clear();*/
+        solutions.clear();
+    }*/
+
+    string conf;
+    vector<string> configuracion;
+    unsigned int j;
+    int host_asignado, hosts;
+
+    ifstream p_instances("./Instancias PPP/Configuraciones/PPP.txt");
+    
+    getline(p_instances, boat_spec);
+    Y = stoi(boat_spec);
+    getline(p_instances, boat_spec);
+    T = stoi(boat_spec);
+    getline(p_instances, boat_spec);
+    p_instances.close();
+    
+    out_path = "./BigOutputPPP/PPP.txt";
+    out_path_true = "./BigOutputPPP/PPP.out";
+    
+    vector<string> specs = split(boat_spec, ";");
+    vector<Boat> boats = init_boats(Y, specs);
+
+    for(i = 1; i <= 6; ++i){
+        ifstream config("./Instancias PPP/Configuraciones/config" + to_string(i) + ".txt");
+        getline(config, conf);
+        configuracion = split(conf, " ");
+
+        for(j = 0; j < configuracion.size(); ++j){
+            host_asignado = stoi(configuracion.at(j));
+            asign_hosts_big(&boats.at(host_asignado-1));
+        }
+        sort(boats.begin(), boats.begin()+Y, sort_by_host);
     }
+
+    ofstream output_big(out_path_true);
+    ofstream File_big(out_path);
+    time(&start);
+    for(hosts = 1; hosts < Y; ++hosts){
+        solutions.push_back(HC(File_big, &boats, hosts, Y, T, 1, 1, 1, 1000));
+    }
+    time(&end);
+    
+    write_output(output_big, &solutions, T, Y, &boats);
+    double time_taken = double(end - start);
+    output_big << "Tiempo de ejecución: " << fixed 
+        << time_taken << setprecision(2); 
+    output_big << " [s]" << endl;
+    output_big.close();
+    solutions.clear();
+
     return 0;
 }
