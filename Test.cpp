@@ -257,6 +257,67 @@ vector< vector<int>> HC(ofstream &File, vector<Boat> *boats, int cant_hosts, int
     return best_matrix;
 }
 
+vector< vector<int>> HC_big(ofstream &File, vector<Boat> *boats, int cant_hosts, int Y, int T, int op, int dp, int cp,int MAX_RESETS=100){
+    time_t start, end;
+    time(&start);
+    int stop = 0;
+    int new_sol;
+    int best_sol; //Candidata a mejor solucion
+    int mejor_solucion_absoluta = 1000000;
+    vector< vector<int>> matrix, best_matrix, candidata;
+    File << "cant_hosts=" << cant_hosts << ";max_resets="<< MAX_RESETS << ";CAPA penalty=" << cp << ";DIFF penalty=" << dp << ";ONCE penalty=" << op <<endl; 
+    while(stop < MAX_RESETS){
+        best_sol = 1000000;
+        matrix = generate_random_sol(Y, T, cant_hosts);
+        new_sol = evaluation(cant_hosts, T, &matrix, boats, cp, dp, op);
+
+        bool hay_mejora = true;
+        if(new_sol < best_sol){
+            best_sol = new_sol;
+            File << best_sol << endl;
+            candidata = matrix;
+        }
+        do{
+            matrix = movement(matrix, boats, cant_hosts, &new_sol, T, op, dp, cp);
+            if(new_sol < best_sol){
+                best_sol = new_sol;
+                File << best_sol << endl;
+                candidata = matrix;
+            }
+            else{
+                hay_mejora = false;
+            }
+            if(best_sol > 150){
+                return candidata;
+            }
+        } while(hay_mejora);
+        if(best_sol < mejor_solucion_absoluta){
+            mejor_solucion_absoluta = best_sol;
+            best_matrix = candidata;
+        }
+        if(mejor_solucion_absoluta <= 10){
+            File << "BEST SOL EVAL: " << mejor_solucion_absoluta << endl;
+            time(&end);
+
+            double time_taken = double(end - start);
+            File << "Time: " << fixed 
+                << time_taken << setprecision(5); 
+            File << " sec" << endl; 
+            return best_matrix;
+        }
+        stop++;
+
+    }
+    File << "BEST SOL EVAL: " << mejor_solucion_absoluta << endl;
+    time(&end);
+
+    double time_taken = double(end - start);
+    File << "Time: " << fixed 
+         << time_taken << setprecision(5); 
+    File << " sec" << endl; 
+    return best_matrix;
+}
+
 void write_output(ofstream &File, vector< vector< vector<int> > > *solutions, int T, int Y, vector<Boat> *boats){
     int best_i = 0;
     int best_eval = 100000;
@@ -382,16 +443,16 @@ int main(){
     string conf;
     vector<string> configuracion;
     unsigned int j;
-    int host_asignado, hosts;
+    int host_asignado;
 
-    ifstream p_instances("./Instancias PPP/Configuraciones/PPP.txt");
+    ifstream p_big_instances("./Instancias PPP/Configuraciones/PPP.txt");
     
-    getline(p_instances, boat_spec);
+    getline(p_big_instances, boat_spec);
     Y = stoi(boat_spec);
-    getline(p_instances, boat_spec);
+    getline(p_big_instances, boat_spec);
     T = stoi(boat_spec);
-    getline(p_instances, boat_spec);
-    p_instances.close();
+    getline(p_big_instances, boat_spec);
+    p_big_instances.close();
     
     out_path = "./BigOutputPPP/PPP.txt";
     out_path_true = "./BigOutputPPP/PPP.out";
@@ -401,31 +462,34 @@ int main(){
 
     for(i = 1; i <= 6; ++i){
         ifstream config("./Instancias PPP/Configuraciones/config" + to_string(i) + ".txt");
+        out_path = "./BigOutputPPP/config" + to_string(i) + ".txt";
+        out_path_true = "./BigOutputPPP/config" + to_string(i) + ".out";
         getline(config, conf);
         configuracion = split(conf, " ");
+
+        //cout << configuracion.size() << endl;
 
         for(j = 0; j < configuracion.size(); ++j){
             host_asignado = stoi(configuracion.at(j));
             asign_hosts_big(&boats.at(host_asignado-1));
         }
         sort(boats.begin(), boats.begin()+Y, sort_by_host);
-    }
 
-    ofstream output_big(out_path_true);
-    ofstream File_big(out_path);
-    time(&start);
-    for(hosts = 1; hosts < Y; ++hosts){
-        solutions.push_back(HC(File_big, &boats, hosts, Y, T, 1, 1, 1, 1000));
+        ofstream output_big(out_path_true);
+        ofstream File_big(out_path);
+        time(&start);
+        //cout << "Config" << i << ": " << hosts << endl;
+        solutions.push_back(HC(File_big, &boats, (int) configuracion.size(), Y, T, 1, 1, 1, 10));
+        time(&end);
+        
+        write_output(output_big, &solutions, T, Y, &boats);
+        double time_taken = double(end - start);
+        output_big << "Tiempo de ejecución: " << fixed 
+            << time_taken << setprecision(2); 
+        output_big << " [s]" << endl;
+        output_big.close();
+        solutions.clear();
     }
-    time(&end);
-    
-    write_output(output_big, &solutions, T, Y, &boats);
-    double time_taken = double(end - start);
-    output_big << "Tiempo de ejecución: " << fixed 
-        << time_taken << setprecision(2); 
-    output_big << " [s]" << endl;
-    output_big.close();
-    solutions.clear();
 
     return 0;
 }
